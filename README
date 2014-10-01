@@ -1,6 +1,9 @@
 Karma, Jasmine, WebStorm kata
 
-Work through the following set of instructions to complete the kata.
+Using the Roy Osherove String Calculator kata, here:
+http://osherove.com/tdd-kata-1/
+
+Work through the following set of instructions to complete the kata using karma, jasmine, and WebStorm.
 
 *****
 1) create a new directory
