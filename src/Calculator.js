@@ -6,6 +6,8 @@ var Calculator = {
         return this;
     },
     add: function(numbersToAdd) {
+        if(numbersToAdd.length > 0)
+            return parseInt(numbersToAdd);
         return 0;
     }
 };

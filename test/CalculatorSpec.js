@@ -5,5 +5,11 @@ describe('String Calculator', function () {
             var result = sut.add("");
             expect(result).toEqual(0);
         });
+
+        it('should return numeric equivalent for a 1-length string input', function () {
+            var sut = Calculator.create();
+            var result = sut.add("3");
+            expect(result).toEqual(3);
+        });
     });
 });
