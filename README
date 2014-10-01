@@ -1,0 +1,96 @@
+Karma, Jasmine, WebStorm kata
+
+Work through the following set of instructions to complete the kata.
+
+*****
+1) create a new directory
+	mkdir calculatorKata-2014Oct01
+	cd calculatorKata-2014Oct01
+
+2) set up git init and gitignore
+	a) git init
+	b) use vim .gitignore to add the following to ignore:
+		.idea
+		node_modules
+	c) git add .gitignore
+	d) git commit -m "First commit (the .gitignore)"
+
+3) set up karma using the npm tool
+	optionally this (for global access to karma command)
+		sudo npm install -g karma-cli
+	then:
+		npm install karma
+
+4) set up jasmine and a browser launcher
+	npm install karma-jasmine karma-chrome-launcher
+
+5) set up karma config
+	karma init
+
+Use defaults. Except: when you are asked what directories to use for source and test, enter the following:
+	src/*.js
+	test/**/*Spec.js
+
+6) run karma start
+	Since you haven't created tests yet, karma will run, but complain that it executed 0 of 0 tests.
+	ctrl-c to exit
+
+7) set up WebStorm to work with the karma framework
+	Get a 30 day trial of WebStorm, here:
+		http://www.jetbrains.com/webstorm/download/
+
+	We'll be using a set of standard keyboard shortcuts common to Reshaper (.NET), Intellij (Java), AppCode (objective-c), PyCharm (Python), RubyMine (Ruby), PhpStorm (php) etc.
+
+	a) Launch WebStorm
+	b) Open your current directory
+	c) Under WebStorm>Preferences make sure your keymap is set to Intellij (or similar).
+	d) Now let's configure karma:
+		1) alt-Shift-F10 to bring up Run... dialog
+		2) Click + (or Ctrl-N) to create a new entry, select karma
+		3) In the Name field, enter AllTests
+		4) Node interpreter should default to correct directory
+		5) Karma package should default to correct directory (the karma directory installed by the command line tools)
+		6) For configuration file, select the karma-generated karma.conf.js at the root of your web app
+		7) Click apply and close
+	e) Use Ctrl-N to create an src directory.
+	f) Use Ctrl-N to create a test directory.
+	g) With test directory selected, use Ctrl-N to create a new Javascript file CalculatorSpec.js
+	h) With src directory selected, use Ctrl-N to create a new Javascript file Calculator.js
+	i) In CalculatorSpec.js, enter your first two specifications (this is using Jasmine syntax):
+
+describe('String Calculator', function () {
+    describe('add method', function () {
+        it('should return 0 for a 0-length string input', function () {
+            var sut = Calculator.create();
+            var result = sut.add("");
+            expect(result).toEqual(0);
+        });
+
+        it('should return numeric equivalent for a 1-length string input', function () {
+            var sut = Calculator.create();
+            var result = sut.add("3");
+            expect(result).toEqual(3);
+        });
+    });
+});
+
+	j) In Calculator.js, enter this snippet to get started. (discussion/explanation to follow):
+
+var Calculator = {
+    create: function () {
+        return Object.create(Calculator).init();
+    },
+    init: function () {
+        return this;
+    },
+    add: function(numbersToAdd) {
+        if(numbersToAdd.length > 0)
+            return parseInt(numbersToAdd);
+        return 0;
+    }
+};
+
+7) Now use the Roy Osherove String kata exercise to complete this kata:
+http://osherove.com/tdd-kata-1/
+
+
